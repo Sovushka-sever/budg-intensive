@@ -7,14 +7,12 @@ def convert_temperature(value, to_scale):
 
     Returns: значение как результат конвертации
     """
-    if value == '' or value is None:
-        raise ValueError("Temperature value cannot be empty.")
 
     if to_scale == 'C':
-        temperature = (5 / 9) * (int(value) - 32)
+        temperature = (5 / 9) * (value - 32)
     elif to_scale == 'F':
-        temperature = (9 / 5) * int(value) + 32
+        temperature = (9 / 5) * value + 32
     else:
         temperature = value
 
-    return int(temperature)
+    return temperature
