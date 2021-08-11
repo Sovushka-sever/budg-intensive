@@ -28,14 +28,10 @@ class Tuple:
         Args:
             value: Элемент индекс которого ищется в объекте
         """
-        index_val = 0
-        if value in self.values:
-            for item in self.values:
-                if item == value:
-                    break
-                index_val += 1
-
-            return index_val
-
-        else:
+        if value not in self.values:
             raise ValueError("Нет такого элемента")
+
+        for ind, item in enumerate(self.values):
+            if item == value:
+                index_val = ind
+                return index_val
