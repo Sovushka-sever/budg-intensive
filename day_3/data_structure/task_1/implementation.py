@@ -4,10 +4,10 @@ class Tuple:
     При создание принимается последовательность объектов
     """
     def __init__(self, *args):
-        self.meanings = args
+        self.values = args
 
     def __getitem__(self, item):
-        return self.meanings[item]
+        return self.values[item]
 
     def count(self, value):
         """
@@ -16,7 +16,7 @@ class Tuple:
             value: Элемент число вхождения которого ищется в объекте
         """
         count_val = 0
-        for item in self.meanings:
+        for item in self.values:
             if item == value:
                 count_val += 1
 
@@ -29,8 +29,8 @@ class Tuple:
             value: Элемент индекс которого ищется в объекте
         """
         index_val = 0
-        if value in self.meanings:
-            for item in self.meanings:
+        if value in self.values:
+            for item in self.values:
                 if item == value:
                     break
                 index_val += 1
