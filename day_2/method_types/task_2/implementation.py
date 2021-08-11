@@ -14,9 +14,10 @@ class ClassFather:
         else:
             raise MyException
 
-    def get_name(self):
-        if self.__class__ in self.registered_list:
-            return self._name
+    @classmethod
+    def get_name(cls):
+        if cls in ClassFather.registered_list:
+            return cls._name
         else:
             raise MyException
 

@@ -7,11 +7,10 @@ def check_value(func):
     В случае валидного значения - передает дальше в функцию,
     в противном случае - выбрасывает исключение MyException.
     """
-    def wrapper(*args):
-        for arg in args:
-            if arg is None or not isinstance(arg, int) or arg < 0:
-                raise MyException
-            return func(arg)
+    def wrapper(arg):
+        if arg is None or not isinstance(arg, int) or arg < 0:
+            raise MyException
+        return func(arg)
     return wrapper
 
 
