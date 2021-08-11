@@ -31,7 +31,6 @@ class Tuple:
         if value not in self.values:
             raise ValueError("Нет такого элемента")
 
-        for ind, item in enumerate(self.values):
+        for index_val, item in enumerate(self.values):
             if item == value:
-                index_val = ind
                 return index_val
