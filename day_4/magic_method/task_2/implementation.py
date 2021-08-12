@@ -47,3 +47,4 @@ class MathClock:
             self.hours = (self.hours - other) % 24
 
         return self
+
