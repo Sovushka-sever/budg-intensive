@@ -8,4 +8,4 @@ c = Product(10)
 my_list_product = [a, b, c]
 
 
-res_list_product = []
+res_list_product = list(filter(lambda elem: elem.value > 10, my_list_product))
