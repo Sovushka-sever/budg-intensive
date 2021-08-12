@@ -43,7 +43,7 @@ class MathClock:
 
         if self.hours - other < 0:
             self.hours = (24 + (self.hours - other)) % 24
-
-        self.hours = (self.hours - other) % 24
+        else:
+            self.hours = (self.hours - other) % 24
 
         return self

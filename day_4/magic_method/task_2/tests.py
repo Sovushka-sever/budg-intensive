@@ -34,6 +34,11 @@ class MyTestCase(unittest.TestCase):
         time_obj + 61
         self.assertEqual(time_obj.get_time(), '02:01')
 
+    m = MathClock()
+
+    m / 1
+    print(m.get_time())
+
 
 if __name__ == '__main__':
     unittest.main()
