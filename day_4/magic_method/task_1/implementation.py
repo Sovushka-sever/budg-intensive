@@ -8,6 +8,7 @@ class Hundred(Multiplier):
     """Множитель на 100"""
 
     def __init__(self, value):
+        super().__init__(value)
         self.value = value * 100
 
     def get_value(self):
@@ -18,54 +19,42 @@ class Hundred(Multiplier):
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value += other.get_value()
-        else:
-            self.value += other
-
-        return self
+        result = Hundred((self.value + other.get_value()) / 100)
+        return result
 
     def __sub__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value -= other.get_value()
-        else:
-            self.value -= other
+        result = Hundred((self.value - other.get_value()) / 100)
 
-        return self
+        return result
 
     def __mul__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value *= other.get_value()
-        else:
-            self.value *= other
+        result = Hundred((self.value * other.get_value()) / 100)
 
-        return self
+        return result
 
     def __truediv__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value /= other.get_value()
-        else:
-            self.value /= other
+        result = Hundred(self.value / other.get_value())
 
-        return self
+        return result
 
 
 class Thousand(Multiplier):
     """Множитель на 1 000"""
 
     def __init__(self, value):
+        super().__init__(value)
         self.value = value * 1_000
 
     def get_value(self):
@@ -76,54 +65,42 @@ class Thousand(Multiplier):
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value += other.get_value()
-        else:
-            self.value += other
-
-        return self
+        result = Thousand(self.value + other.get_value())
+        return result
 
     def __sub__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value -= (other.get_value())
-        else:
-            self.value -= other
+        result = Thousand((self.value - other.get_value()) / 1_000)
 
-        return self
+        return result
 
     def __mul__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value *= other.get_value()
-        else:
-            self.value *= other
+        result = Thousand((self.value * other.get_value()) / 1_000)
 
-        return self
+        return result
 
     def __truediv__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value /= other.get_value()
-        else:
-            self.value /= other
+        result = Thousand((self.value / other.get_value()) / 1_000)
 
-        return self
+        return result
 
 
 class Million(Multiplier):
     """Множитель на 1 000 000"""
 
     def __init__(self, value):
+        super().__init__(value)
         self.value = value * 1_000_000
 
     def get_value(self):
@@ -134,45 +111,32 @@ class Million(Multiplier):
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value += other.get_value()
-        else:
-            self.value += other
-
-        return self
+        result = Million((self.value + other.get_value()) / 1_000_000)
+        return result
 
     def __sub__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value -= other.get_value()
-        else:
-            self.value -= other
+        result = Million((self.value - other.get_value()) / 1_000_000)
 
-        return self
+        return result
 
     def __mul__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value *= other.get_value()
-        else:
-            self.value *= other
+        result = Million((self.value * other.get_value()) / 1_000_000)
 
-        return self
+        return result
 
     def __truediv__(self, other):
 
         if not isinstance(other, (Hundred, Thousand, Million)):
             raise TypeError
 
-        if isinstance(other, (Hundred, Thousand, Million)):
-            self.value /= other.get_value()
-        else:
-            self.value /= other
+        result = Million((self.value / other.get_value()) / 1_000_000)
 
-        return self
+        return result
