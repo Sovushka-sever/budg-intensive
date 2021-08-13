@@ -2,6 +2,7 @@ class Multiplier:
 
     def __init__(self, value) -> None:
         super().__init__()
+        self.value = value
 
 
 class Hundred(Multiplier):
