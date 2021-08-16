@@ -28,12 +28,12 @@ class WorkerManager(models.Manager):
             named=True
         )
         worker_list = []
-        for i in queryset:
+        for item in queryset:
             worker_list.append(
-                f'{queryset[i].first_name} '
-                f'{queryset[i].last_name}, '
-                f'{queryset[i].tab_num}, '
-                f'{queryset[i].department__name}'
+                f'{item.first_name} '
+                f'{item.last_name}, '
+                f'{item.tab_num}, '
+                f'{item.department__name}'
             )
 
         return worker_list
