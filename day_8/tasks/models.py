@@ -13,7 +13,7 @@ class WorkerManager(models.Manager):
         return super().get_queryset().filter(director__isnull=True)
 
 
-class WorkerForTraining(models.Model):
+class Office(models.Model):
     """
     Модель с общими полями учебного и головного офиса
     """
@@ -25,7 +25,7 @@ class WorkerForTraining(models.Model):
         abstract = True
 
 
-class EducationOffice(WorkerForTraining):
+class EducationOffice(Office):
     """
     Учебный офис
     """
@@ -36,7 +36,7 @@ class EducationOffice(WorkerForTraining):
         db_table = 'education_office'
 
 
-class GeneralOffice(WorkerForTraining):
+class GeneralOffice(Office):
     """
     Головной офис
     """
