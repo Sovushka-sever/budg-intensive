@@ -10,27 +10,37 @@ class WorkerManager(models.Manager):
         Переопределенный кверисет возвращающий всех сотрудников без директоров
         """
 
-        raise NotImplementedError
+        return super().get_queryset().filter(director__isnull=True)
 
 
-class EducationOffice(models.Model):
+class WorkerForTraining(models.Model):
+    """
+    Модель с общими полями учебного и головного офиса
+    """
+
+    address = models.TextField('Адрес')
+    mail = models.CharField('Адрес почты', max_length=30,)
+
+    class Meta:
+        abstract = True
+
+
+class EducationOffice(WorkerForTraining):
     """
     Учебный офис
     """
-    address = models.TextField('Адрес')
-    mail = models.CharField('Адрес почты', max_length=30,)
+
     is_active = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'education_office'
 
 
-class GeneralOffice(models.Model):
+class GeneralOffice(WorkerForTraining):
     """
     Головной офис
     """
-    address = models.TextField('Адрес')
-    mail = models.CharField('Адрес почты', max_length=30)
+
     name = models.TextField('Название головного офиса ')
 
     class Meta:
@@ -42,8 +52,7 @@ class Department(models.Model):
     Подразделение
     """
     name = models.CharField('Наименование', max_length=30)
-
-    education_office = models.ForeignKey(EducationOffice, on_delete=models.SET_NULL, null=True )
+    education_office = models.ForeignKey(EducationOffice, on_delete=models.SET_NULL, null=True)
     office = models.ForeignKey(GeneralOffice, on_delete=models.SET_NULL, null=True)
 
     class Meta:
@@ -83,12 +92,17 @@ class OrderedWorker(Worker):
     """
     Модель с  сотрудниками упорядоченными по фамилии и дате приема на работу
     """
+
     @property
     def startwork_year(self):
         """
         Получить значение года приема на работу
         """
-        raise NotImplementedError
+        return self.startwork_date.year
+
+    class Meta:
+        proxy = True
+        ordering = ('first_name', 'startwork_date',)
 
 
 class Director(Worker):
@@ -96,18 +110,9 @@ class Director(Worker):
     Директор
     """
     # что здесь не хватает?
+    objects = models.Manager()
     grade = models.IntegerField('Оценка', default=1)
 
     class Meta:
         db_table = 'directors'
         verbose_name = 'Директор'
-
-
-
-
-
-
-
-
-
-
